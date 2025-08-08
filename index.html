@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfólio de Cortinas</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Instalação de Cortinas</h1>
+    <p>Profissional especializado em cortinas sob medida</p>
+  </header>
+
+  <main>
+    <section class="botoes-contato">
+      <a href="https://wa.me/5511999999999" target="_blank" class="btn whatsapp">Fale pelo WhatsApp</a>
+      <a href="https://instagram.com/seuusuario" target="_blank" class="btn instagram">Veja no Instagram</a>
+    </section>
+
+    <section>
+      <a href="galeria.html" class="btn galeria">Ver Galeria</a>
+    </section>
+  </main>
+
+  <form onsubmit="enviarParaWhatsapp(); return false;">
+    <label>Nome:</label><br>
+    <input type="text" id="nome" required><br><br>
+
+    <label>Mensagem:</label><br>
+    <textarea id="mensagem" required></textarea><br><br>
+
+    <button type="submit">Enviar para WhatsApp</button>
+  </form>
+
+  <footer>
+    <p>&copy; 2025 - Seu Nome</p>
+  </footer>
+
+
+  <script>
+  function enviarParaWhatsapp() {
+    const nome = document.getElementById("nome").value;
+    const mensagem = document.getElementById("mensagem").value;
+
+    const texto = `Olá! Meu nome é ${nome}. ${mensagem}`;
+    const numero = "5511949768699"; // Substitua pelo seu número (com DDD e sem espaços)
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+header {
+  background: #222;
+  color: white;
+  padding: 20px 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 15px 25px;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.whatsapp { background-color: #25D366; }
+.instagram { background-color: #E4405F; }
+.galeria { background-color: #555; }
+
+#lightgallery img {
+  max-width: 200px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
