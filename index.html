@@ -1,80 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfólio de Cortinas</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <header>
-    <h1>Rufino Decorações</h1>
-    <p>Profissional especializado em cortinas sob medida</p>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>(FAVICON)Rufino Decorações</title>
+    <link href="./css/output.css" rel="stylesheet">
+    <script src="js/navbar.js" defer></script>
+  </head>
+  <body class="bg-black">
 
-  <main>
-    <section class="botoes-contato">
-      <a href="https://wa.me/5511999999999" target="_blank" class="btn whatsapp">Fale pelo WhatsApp</a>
-      <a href="https://instagram.com/seuusuario" target="_blank" class="btn instagram">Veja no Instagram</a>
-    </section>
-
-    <section>
-      <a href="galeria.html" class="btn galeria">Ver Galeria</a>
-    </section>
-
-    <!-- Galeria de Imagens -->
-    <section class="galeria-imagens">
-      <h2>Imagens</h2>
-      <div class="imagens-grid">
-        <picture>
-          <source srcset="img/Logo_Jonnao_png.png" type="image/png">
-          <img src="img/Logo_Jonnao.jpg" alt="Logo Rufino Decorações" style="width:100%;max-width:300px;height:auto;">
-        </picture>
-      </div>
-    </section>
-
-    <!-- Galeria de Vídeos -->
-    <section class="galeria-videos">
-      <h2>Vídeos</h2>
-      <div class="videos-grid">
-        <video controls width="100%" style="max-width:400px;">
-          <source src="videos/0_Bathroom_Black_Faucet_3840x2160.mp4" type="video/mp4">
-          Seu navegador não suporta o elemento de vídeo.
+    <main class="">
+      <section class="relative w-full h-screen overflow-hidden">
+        <!-- Vídeo de fundo -->
+        <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+          <source src="/videos/4992209_Space_Luxury_3840x2160.mp4" type="video/mp4" />
         </video>
-        <video controls width="100%" style="max-width:400px;">
-          <source src="videos/1174163_House_Home_1920x1080.mp4" type="video/mp4">
-          Seu navegador não suporta o elemento de vídeo.
-        </video>
-      </div>
-    </section>
-  </main>
+        <!-- Overlay escuro -->
+        <div class="absolute inset-0 bg-black/50 z-10"></div>
+        <!-- Imagem centralizada -->
+        <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+          <picture>
+            <source srcset="img/Logo_Jonnao_png.png" type="image/png">
+            <img src="img/Logo_Jonnao.jpg" alt="Logo Rufino Decorações" class="w-full max-w-xs" />
+          </picture>
+        </div>
+        <!-- Texto sobreposto -->
+        <div id="textDescubraCafe" class="absolute inset-0 flex flex-col items-center justify-center mt-120 space-y-2 z-20" data-aos="fade-up">
+          <p class="text-white text-xl max-w-300 p-3 text-center whitespace-pre-line">
+            A arte de transformar ambientes
+          </p>
+          <a href="/collections/originals" class="text-white font-bold text-2xl no-underline hover:text-gray-300 transition-all duration-300">
+            Saiba mais<span class="ml-2 text-2xl" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
 
-  <form onsubmit="enviarParaWhatsapp(); return false;">
-    <label>Nome:</label><br>
-    <input type="text" id="nome" required><br><br>
+      <section class="w-full h-[500px] my-8 text-center">
+        <a href="galeria.html" class="px-6 py-3 rounded bg-blue-500 text-white font-semibold shadow hover:bg-blue-600 transition">Ver Galeria</a>
+        <a href="https://wa.me/5511999999999" target="_blank" class="px-6 py-3 rounded bg-green-500 text-white font-semibold shadow hover:bg-green-600 transition">Fale pelo WhatsApp</a>
+        <a href="https://instagram.com/seuusuario" target="_blank" class="px-6 py-3 rounded bg-pink-500 text-white font-semibold shadow hover:bg-pink-600 transition">Veja no Instagram</a>
+      </section>
+    </main>
 
-    <label>Mensagem:</label><br>
-    <textarea id="mensagem" required></textarea><br><br>
-
-    <button type="submit">Enviar para WhatsApp</button>
-  </form>
-
-  <footer>
-    <p>&copy; 2025 - Seu Nome</p>
-  </footer>
-
-
-  <script>
-  function enviarParaWhatsapp() {
-    const nome = document.getElementById("nome").value;
-    const mensagem = document.getElementById("mensagem").value;
-
-    const texto = `Olá! Meu nome é ${nome}. ${mensagem}`;
-    const numero = "5511949768699"; // Substitua pelo seu número (com DDD e sem espaços)
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-    window.open(url, '_blank');
-  }
-  </script>
-</body>
+    <div id="header"></div>
+    <div id="footer"></div>
+    <script>
+      fetch('/header.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('header').innerHTML = html;
+        });
+      fetch('/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('footer').innerHTML = html;
+        });
+    </script>
+  </body>
 </html>

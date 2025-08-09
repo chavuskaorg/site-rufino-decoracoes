@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contato</title>
+    <link href="./css/output.css" rel="stylesheet">
+  </head>
+  <body class="bg-black">
+    <main class="mt-20">
+      <div class="text-center mx-30">
+        <h1 class="text-white text-5xl">Quem Somos</h1>
+        <p class="text-white text-2xl whitespace-pre-line">
+          A Rufino Decorações é uma empresa especializada em decoração de ambientes, oferecendo uma ampla gama de serviços para atender às necessidades dos nossos clientes. Com anos de experiência no mercado, nossa equipe é composta por profissionais qualificados e apaixonados pelo que fazem.
+
+          Nossa missão é transformar espaços, proporcionando conforto e beleza através de soluções personalizadas. Trabalhamos com os melhores materiais e técnicas para garantir a qualidade e durabilidade dos nossos serviços.
+
+          Entre os nossos serviços, destacamos:
+            - Lavagem e manutenção de cortinas e persianas;
+            - Confecção e venda de cortinas e persianas;
+            - Tapeçaria em geral;
+            - Terceirização de serviços em instalações;</p>
+      </div>
+    </main>
+    
+    <div id="header"></div>
+    <div id="footer"></div>
+    <script>
+      fetch('/header.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('header').innerHTML = html;
+        });
+      fetch('/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('footer').innerHTML = html;
+        });
+    </script>
+  </body>
+</html>
