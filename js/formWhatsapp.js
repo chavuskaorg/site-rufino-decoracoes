@@ -5,7 +5,7 @@ function enviarParaWhatsapp() {
   const mensagem = document.getElementById("mensagem").value;
 
   const texto = `Olá! Meu nome é ${nome}. ${mensagem}`;
-  const numero = "5511949768699"; // Substitua pelo seu número (com DDD e sem espaços)
+  const numero = "5511993687080"; // Substitua pelo seu número (com DDD e sem espaços)
 
   const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
   window.open(url, '_blank');

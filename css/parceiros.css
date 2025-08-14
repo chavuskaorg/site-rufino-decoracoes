@@ -1,0 +1,22 @@
+ #parceiros .swiper-slide {
+  display: flex;
+  flex-direction: row; /* Alinha imagem e texto lado a lado */
+  align-items: center; /* Alinha verticalmente ao centro */
+  justify-content: center; /* Centraliza horizontalmente */
+  gap: 10px; /* Espaço entre imagem e texto */
+  height: 200px;
+  margin: 0 50px;
+  text-align: center; 
+}
+
+#parceiros .swiper-slide img {
+  object-fit: contain;
+  width: 150px;
+  height: 150px;
+}
+
+#parceiros .swiper-slide p {
+  font-size: 0.8rem;
+  width: 50vw;
+  overflow-wrap: break-word;
+}

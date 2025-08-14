@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Galeria - Cortinas</title>
+    <link href="./css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
+  </head>
+  <body class="bg-black">
+    <main class="mt-20">
+      <div class="text-white text-center">
+        <h1 class="text-5xl">Galeria de Fotos e Vídeos</h1>
+      </div>
+      <div id="lightgallery">
+        <a href="img/Logo_Jonnao_png.png">
+          <img 
+            src="img/Logo_Jonnao_png.png" 
+            alt="Cortina 1"
+            class="max-w-xs m-2 rounded-md shadow-md"
+          />
+        </a>
+        <a href="img/Logo_Jonnao.jpg">
+          <img 
+            src="img/Logo_Jonnao.jpg" 
+            alt="Cortina 2" 
+            class="max-w-xs m-2 rounded-md shadow-md"
+          />
+        </a>
+        <a data-lg-size="1280-720" data-lg-video='{"source": [{"src":"videos/1174163_House_Home_1920x1080.mp4","type":"video/mp4"}], "attributes": {"preload": false, "controls": true}}'>
+          <img 
+            src="img/thumb-video1.jpg" 
+            alt="Vídeo de instalação" 
+            class="max-w-xs m-2 rounded-md shadow-md"
+          />
+        </a>
+              <a data-lg-size="1280-720" data-lg-video='{"source": [{"src":"videos/0_Bathroom_Black_Faucet_3840x2160.mp4","type":"video/mp4"}], "attributes": {"preload": false, "controls": true}}'>
+          <img 
+            src="img/thumb-video1.jpg" 
+            alt="Vídeo de instalação" 
+            class="max-w-xs m-2 rounded-md shadow-md"
+          />
+        </a>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
+    <script>
+      lightGallery(document.getElementById('lightgallery'), {
+        plugins: [],
+        speed: 500,
+      });
+    </script>
+
+    <div id="header"></div>
+    <div id="footer"></div>
+    <script>
+      fetch('/header.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('header').innerHTML = html;
+        });
+      fetch('/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('footer').innerHTML = html;
+        });
+    </script>
+  </body>
+</html>
