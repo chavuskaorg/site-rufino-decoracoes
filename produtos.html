@@ -4,67 +4,119 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Galeria - Cortinas</title>
+
+    <!-- Tailwind output -->
     <link href="./css/output.css" rel="stylesheet">
+    <script src="js/navbar.js" defer></script>
+    <!-- lightGallery (bundle já inclui plugin de vídeo) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
   </head>
-  <body class="bg-black">
-    <main class="mt-20">
-      <div class="text-white text-center">
-        <h1 class="text-5xl">Galeria de Fotos e Vídeos</h1>
-      </div>
-      <div id="lightgallery">
-        <a href="img/Logo_Jonnao_png.png">
-          <img 
-            src="img/Logo_Jonnao_png.png" 
-            alt="Cortina 1"
-            class="max-w-xs m-2 rounded-md shadow-md"
-          />
-        </a>
-        <a href="img/Logo_Jonnao.jpg">
-          <img 
-            src="img/Logo_Jonnao.jpg" 
-            alt="Cortina 2" 
-            class="max-w-xs m-2 rounded-md shadow-md"
-          />
-        </a>
-        <a data-lg-size="1280-720" data-lg-video='{"source": [{"src":"videos/1174163_House_Home_1920x1080.mp4","type":"video/mp4"}], "attributes": {"preload": false, "controls": true}}'>
-          <img 
-            src="img/thumb-video1.jpg" 
-            alt="Vídeo de instalação" 
-            class="max-w-xs m-2 rounded-md shadow-md"
-          />
-        </a>
-              <a data-lg-size="1280-720" data-lg-video='{"source": [{"src":"videos/0_Bathroom_Black_Faucet_3840x2160.mp4","type":"video/mp4"}], "attributes": {"preload": false, "controls": true}}'>
-          <img 
-            src="img/thumb-video1.jpg" 
-            alt="Vídeo de instalação" 
-            class="max-w-xs m-2 rounded-md shadow-md"
-          />
-        </a>
+
+  <body class="bg-[#f5f0eb] text-white antialiased">
+    <main class="mt-24 mb-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl text-black sm:text-5xl font-semibold text-center mb-8">Galeria de Fotos e Vídeos</h1>
+        <!-- botão simples para abrir toda a galeria (opcional) -->
+        <div class="text-center">
+          <button id="openAll" class="px-6 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">
+            Abrir Galeria
+          </button>
+        </div>
+
+        <!-- gallery grid container -->
+        <div id="galleryGrid" class="grid grid-cols-2 mt-8 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-center items-start">
+          <!-- itens serão gerados por JS -->
+        </div>
       </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
-    <script>
-      lightGallery(document.getElementById('lightgallery'), {
-        plugins: [],
-        speed: 500,
-      });
-    </script>
-
     <div id="header"></div>
     <div id="footer"></div>
+
+    <!-- lightGallery script -->
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
+
     <script>
-      fetch('/header.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('header').innerHTML = html;
+      // Lista centralizada de itens (adicione aqui para expandir a galeria)
+      // type: 'image' | 'video'
+      // src: caminho do recurso (imagem ou vídeo)
+      // thumb: miniatura (pode ser a mesma imagem)
+      // alt: texto alternativo para acessibilidade
+      const galleryItems = [
+        // imagens
+        { type: 'image', src: 'img/design-minimalista-de-sala-de-estar.jpg', thumb: 'img/design-minimalista-de-sala-de-estar.jpg', alt: 'Design minimalista de sala de estar' },
+        { type: 'image', src: 'img/interior-moderno-da-sala-de-estar.jpg', thumb: 'img/interior-moderno-da-sala-de-estar.jpg', alt: 'Interior moderno da sala de estar' },
+        { type: 'image', src: 'img/janela-adornada-com-uma-cortina-elegante-que-melhora-decoracao-interior-e-adiciona-calor-qualquer-quarto.jpg', thumb: 'img/janela-adornada-com-uma-cortina-elegante-que-melhora-decoracao-interior-e-adiciona-calor-qualquer-quarto.jpg', alt: 'Janela adornada com cortina elegante' },
+        { type: 'image', src: 'img/cortinas-de-janela.jpg', thumb: 'img/cortinas-de-janela.jpg', alt: 'Cortinas de janela' },
+        { type: 'image', src: 'img/cortinas-cinzentas-parede-branca-estilo-moderno.jpg', thumb: 'img/cortinas-cinzentas-parede-branca-estilo-moderno.jpg', alt: 'Cortinas cinzentas parede branca' },
+        { type: 'image', src: 'img/janela-de-cortina.jpg', thumb: 'img/janela-de-cortina.jpg', alt: 'Janela de cortina' },
+
+        // logos / parceiros (imagens)
+        { type: 'image', src: 'img/logo_artesanart.png', thumb: 'img/logo_artesanart.png', alt: 'Artesanart' },
+        { type: 'image', src: 'img/logo_columbia.png', thumb: 'img/logo_columbia.png', alt: 'Columbia' },
+        { type: 'image', src: 'img/logo_fineflex.png', thumb: 'img/logo_fineflex.png', alt: 'Fineflex' },
+
+        // vídeos (use data-lg-video - lightGallery aceita o atributo)
+        { type: 'video', src: 'videos/1174163_House_Home_1920x1080.mp4', thumb: 'img/interior-moderno-da-sala-de-estar.jpg', alt: 'Vídeo - Casa' },
+        { type: 'video', src: 'videos/0_Bathroom_Black_Faucet_3840x2160.mp4', thumb: 'img/pexels-element5-1125135.jpg', alt: 'Vídeo - Banheiro' },
+        { type: 'video', src: 'videos/0_Window_Curtains_3840x2160_1.mp4', thumb: 'img/janela-de-cortina.jpg', alt: 'Vídeo - Cortinas' }
+      ];
+
+      // cria um item da galeria no DOM (sem necessidade de duplicar markup manualmente)
+      function createGalleryItem(item) {
+        const a = document.createElement('a');
+        a.className = 'block overflow-hidden rounded-lg shadow-sm bg-white';
+        a.href = item.src;
+        a.setAttribute('aria-label', item.alt || '');
+        a.setAttribute('data-lg-size', '1280-720');
+
+        if (item.type === 'video') {
+          // data attribute para lightgallery vídeo (JSON)
+          a.setAttribute('data-lg-video', JSON.stringify({
+            source: [{ src: item.src, type: 'video/mp4' }],
+            attributes: { preload: false, controls: true }
+          }));
+        }
+
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.className = 'w-full h-40 object-cover sm:h-44 md:h-36 lg:h-44';
+        img.src = item.thumb || item.src;
+        img.alt = item.alt || '';
+
+        a.appendChild(img);
+        return a;
+      }
+
+      // renderiza a grade e inicializa o lightGallery
+      (function initGallery() {
+        const grid = document.getElementById('galleryGrid');
+        if (!grid) return;
+
+        // cria dinamicamente os itens
+        galleryItems.forEach(it => grid.appendChild(createGalleryItem(it)));
+
+        // inicializa lightGallery no container (seleciona <a>)
+        const lg = lightGallery(grid, {
+          selector: 'a',
+          speed: 400,
+          download: false,
+          autoplayFirstVideo: false,
+          // plugins: [] // bundle já tem plugins necessários
         });
-      fetch('/footer.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('footer').innerHTML = html;
-        });
+
+        // botão "Abrir Galeria" abre o primeiro item
+        const openAll = document.getElementById('openAll');
+        if (openAll) {
+          openAll.addEventListener('click', () => {
+            lg.openGallery(0);
+          });
+        }
+      })();
     </script>
+
+    <!-- incluir showHeader&Footer.js para injetar header/footer -->
+    <script src="js/showHeader&Footer.js" defer></script>
   </body>
 </html>

@@ -8,8 +8,6 @@
     <script src="js/navbar.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-    <script src="js/parceiros.js" defer></script>
-    <link href="css/parceiros.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </head>
   <body class="bg-black">
@@ -227,17 +225,8 @@
 
     <div id="header"></div>
     <div id="footer"></div>
-    <script>
-      fetch('/header.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('header').innerHTML = html;
-        });
-      fetch('/footer.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('footer').innerHTML = html;
-        });
-    </script>
+    <script src="js/parceiros.js" defer></script>
+    <link href="css/parceiros.css" rel="stylesheet">
+    <script src="js/showHeader&Footer.js" defer></script>
   </body>
 </html>

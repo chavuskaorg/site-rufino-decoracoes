@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Contato</title>
     <link href="./css/output.css" rel="stylesheet">
+    <script src="js/navbar.js" defer></script>
   </head>
   <body class="bg-[url('/img/pexels-catscoming-763147.jpg')] bg-cover">
     <main class="bg-black/50">
@@ -27,17 +28,6 @@
     
     <div id="header"></div>
     <div id="footer"></div>
-    <script>
-      fetch('/header.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('header').innerHTML = html;
-        });
-      fetch('/footer.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('footer').innerHTML = html;
-        });
-    </script>
+    <script src="js/showHeader&Footer.js" defer></script>
   </body>
 </html>
