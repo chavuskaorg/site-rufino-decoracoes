@@ -18,12 +18,12 @@
         <input type="text" id="nome" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
 
         <label class="block mb-2 font-semibold">Localidade:</label>
-        <input type="text" id="nome" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
+        <input type="text" id="localidade" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
 
         <label class="block mb-2 font-semibold">Email:</label>
-        <input type="text" id="nome" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
+        <input type="text" id="email" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
 
-        <label class="block mb-2 font-semibold">Qual produto (select)?
+        <label class="block mb-2 font-semibold">Qual tipo de produto?</label>
         <select id="produto" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
           <option value="" disabled selected>Selecione um produto</option>
           <option value="cortinas">Cortinas</option>
@@ -32,15 +32,15 @@
           <option value="tapeçaria">Tapeçaria</option>
           <option value="outros">Outros</option>
         </select>
-        </label>
-        <input type="text" id="nome" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
 
-        <label class="block mb-2 font-semibold">Serviço:</label>
-            - Lavagem e manutenção de cortinas e persianas;
-            - Confecção e venda de cortinas e persianas (Com monstruário de tecidos);
-            - Tapeçaria em geral;
-            - Terceirização de serviços em instalações;
-        <input type="text" id="nome" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
+        <label class="block mb-2 font-semibold">Escolha o Serviço</label>
+        <select id="servico" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
+          <option value="" disabled selected>Selecione um produto</option>
+          <option value="lavaManuCortiPersi">Lavagem e manutenção de cortinas e persianas</option>
+          <option value="confVendCortiPersi">Confecção e venda de cortinas e persianas</option>
+          <option value="tapecaria">Tapeçaria em geral</option>
+          <option value="outros">Outros</option>
+        </select>
 
         <label class="block mb-2 font-semibold">Mensagem:</label>
         <textarea id="mensagem" placeholder="Relate aqui um pouco da sua necessidade" rows="10" required class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"></textarea>

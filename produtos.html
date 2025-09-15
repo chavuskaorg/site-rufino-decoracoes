@@ -15,12 +15,17 @@
   <body class="bg-[#f5f0eb] text-white antialiased">
     <main class="mt-24 mb-16 px-4">
       <div class="max-w-6xl mx-auto">
-        <h1 class="text-4xl text-black sm:text-5xl font-semibold text-center mb-8">Galeria de Fotos e Vídeos</h1>
+        <h1 class="text-2xl text-black sm:text-5xl font-semibold text-center mb-8">Galeria de Fotos e Vídeos</h1>
         <!-- botão simples para abrir toda a galeria (opcional) -->
         <div class="text-center">
-          <button id="openAll" class="px-6 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">
-            Abrir Galeria
-          </button>
+          <button id="openAll" class="px-6 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Abrir Galeria</button>
+          <button data-category="todas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Todas</button>
+          <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <button data-category="persianas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Persianas</button>
+            <button data-category="cortinas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Cortinas</button>
+            <button data-category="tapecarias" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Tapeçarias</button>
+            <button data-category="almofadas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Almofadas Decorativas</button>
+          </div>
         </div>
 
         <!-- gallery grid container -->
@@ -43,24 +48,38 @@
       // thumb: miniatura (pode ser a mesma imagem)
       // alt: texto alternativo para acessibilidade
       const galleryItems = [
-        // imagens
-        { type: 'image', src: 'img/design-minimalista-de-sala-de-estar.jpg', thumb: 'img/design-minimalista-de-sala-de-estar.jpg', alt: 'Design minimalista de sala de estar' },
-        { type: 'image', src: 'img/interior-moderno-da-sala-de-estar.jpg', thumb: 'img/interior-moderno-da-sala-de-estar.jpg', alt: 'Interior moderno da sala de estar' },
-        { type: 'image', src: 'img/janela-adornada-com-uma-cortina-elegante-que-melhora-decoracao-interior-e-adiciona-calor-qualquer-quarto.jpg', thumb: 'img/janela-adornada-com-uma-cortina-elegante-que-melhora-decoracao-interior-e-adiciona-calor-qualquer-quarto.jpg', alt: 'Janela adornada com cortina elegante' },
-        { type: 'image', src: 'img/cortinas-de-janela.jpg', thumb: 'img/cortinas-de-janela.jpg', alt: 'Cortinas de janela' },
-        { type: 'image', src: 'img/cortinas-cinzentas-parede-branca-estilo-moderno.jpg', thumb: 'img/cortinas-cinzentas-parede-branca-estilo-moderno.jpg', alt: 'Cortinas cinzentas parede branca' },
-        { type: 'image', src: 'img/janela-de-cortina.jpg', thumb: 'img/janela-de-cortina.jpg', alt: 'Janela de cortina' },
+        //ALMOFADAS
+        { type: 'image', src: 'img/almofadas-decorativas/almofada2.jpg', thumb: 'img/almofadas-decorativas/almofada2.jpg', alt: 'Almofadas', category: 'almofadas' },
+        { type: 'image', src: 'img/almofadas-decorativas/almofadas1.jpg', thumb: 'img/almofadas-decorativas/almofadas1.jpg', alt: 'Almofadas', category: 'almofadas' },
+        { type: 'image', src: 'img/almofadas-decorativas/almofada3.webp', thumb: 'img/almofadas-decorativas/almofada3.webp', alt: 'Almofadas', category: 'almofadas' },
+        
+        //PERSIANAS
+        { type: 'image', src: 'img/persianas/double-vision.jpg', thumb: 'img/persianas/double-vision.jpg', alt: 'Double Vision', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/horizontal.webp', thumb: 'img/persianas/horizontal.webp', alt: 'Horizontal', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/madeira.webp', thumb: 'img/persianas/madeira.webp', alt: 'Madeira', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/rolo-blackout.webp', thumb: 'img/persianas/rolo-blackout.webp', alt: 'Rolô Blackout', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/romana.jpg', thumb: 'img/persianas/romana.jpg', alt: 'Romana', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/vertical.jpg', thumb: 'img/persianas/vertical.jpg', alt: 'Vertical', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/rolo-tela-solar.jpg', thumb: 'img/persianas/rolo-tela-solar.jpg', alt: 'Rolô Tela Solar', category: 'persianas' },
+        { type: 'video', src: 'img/persianas/rolo-tela-solar.mp4', thumb: 'img/persianas/rolo-tela-solar.jpg', alt: 'Rolô Tela Solar', category: 'persianas' },
 
-        // logos / parceiros (imagens)
-        { type: 'image', src: 'img/logo_artesanart.png', thumb: 'img/logo_artesanart.png', alt: 'Artesanart' },
-        { type: 'image', src: 'img/logo_columbia.png', thumb: 'img/logo_columbia.png', alt: 'Columbia' },
-        { type: 'image', src: 'img/logo_fineflex.png', thumb: 'img/logo_fineflex.png', alt: 'Fineflex' },
-
-        // vídeos (use data-lg-video - lightGallery aceita o atributo)
-        { type: 'video', src: 'videos/1174163_House_Home_1920x1080.mp4', thumb: 'img/interior-moderno-da-sala-de-estar.jpg', alt: 'Vídeo - Casa' },
-        { type: 'video', src: 'videos/0_Bathroom_Black_Faucet_3840x2160.mp4', thumb: 'img/pexels-element5-1125135.jpg', alt: 'Vídeo - Banheiro' },
-        { type: 'video', src: 'videos/0_Window_Curtains_3840x2160_1.mp4', thumb: 'img/janela-de-cortina.jpg', alt: 'Vídeo - Cortinas' }
+        //TAPECARIAS
+        { type: 'image', src: 'img/tapecarias/tapecaria1.jpg', thumb: 'img/tapecarias/tapecaria1.jpg', alt: 'Tapeçaria', category: 'tapecarias' },
+        { type: 'image', src: 'img/tapecarias/tapecaria2.webp', thumb: 'img/tapecarias/tapecaria2.webp', alt: 'Tapeçaria', category: 'tapecarias' },
+        { type: 'image', src: 'img/tapecarias/tapecaria3.jpg', thumb: 'img/tapecarias/tapecaria3.jpg', alt: 'Tapeçaria', category: 'tapecarias' },
+        { type: 'image', src: 'img/tapecarias/tapecaria4.webp', thumb: 'img/tapecarias/tapecaria4.webp', alt: 'Tapeçaria', category: 'tapecarias' },
+        
+        //CORTINAS
+        { type: 'image', src: 'img/cortinas/prega-americana.jpg', thumb: 'img/cortinas/prega-americana.jpg', alt: 'Prega Americana', category: 'cortinas' },
+        { type: 'image', src: 'img/cortinas/prega-femea.jpg', thumb: 'img/cortinas/prega-femea.jpg', alt: 'Prega Femea', category: 'cortinas' },
+        { type: 'image', src: 'img/cortinas/prega-franzida.jpeg', thumb: 'img/cortinas/prega-franzida.jpeg', alt: 'Prega Franzida', category: 'cortinas' },
+        { type: 'image', src: 'img/cortinas/prega-wave-varao.jpg', thumb: 'img/cortinas/prega-wave-varao.jpg', alt: 'Prega Wave Varão', category: 'cortinas' },
+        { type: 'image', src: 'img/cortinas/prega-wave.jpg', thumb: 'img/cortinas/prega-wave.jpg', alt: 'Prega Wave', category: 'cortinas' },
+        { type: 'image', src: 'img/cortinas/romana.jpg', thumb: 'img/cortinas/romana.jpg', alt: 'Romana', category: 'cortinas' },
       ];
+
+      // variável para manter a instância do lightGallery
+      let lgInstance = null;
 
       // cria um item da galeria no DOM (sem necessidade de duplicar markup manualmente)
       function createGalleryItem(item) {
@@ -89,6 +108,38 @@
         return a;
       }
 
+      // função para (re)inicializar o lightGallery no grid atual
+      function initLightGalleryOn(grid) {
+        if (lgInstance) {
+          try { lgInstance.destroy(); } catch (e) { /* ignore */ }
+          lgInstance = null;
+        }
+        lgInstance = lightGallery(grid, {
+          selector: 'a',
+          speed: 400,
+          download: false,
+          autoplayFirstVideo: false,
+        });
+      }
+
+      // Filtro por categoria
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-category');
+          const grid = document.getElementById('galleryGrid');
+          grid.innerHTML = ''; // limpa galeria
+
+          const filtered = selected === 'todas'
+            ? galleryItems
+            : galleryItems.filter(item => item.category === selected);
+
+          filtered.forEach(it => grid.appendChild(createGalleryItem(it)));
+
+          // reinicializa o lightGallery para que os novos <a> sejam reconhecidos
+          initLightGalleryOn(grid);
+        });
+      });
+
       // renderiza a grade e inicializa o lightGallery
       (function initGallery() {
         const grid = document.getElementById('galleryGrid');
@@ -98,22 +149,17 @@
         galleryItems.forEach(it => grid.appendChild(createGalleryItem(it)));
 
         // inicializa lightGallery no container (seleciona <a>)
-        const lg = lightGallery(grid, {
-          selector: 'a',
-          speed: 400,
-          download: false,
-          autoplayFirstVideo: false,
-          // plugins: [] // bundle já tem plugins necessários
-        });
+        initLightGalleryOn(grid);
 
         // botão "Abrir Galeria" abre o primeiro item
         const openAll = document.getElementById('openAll');
         if (openAll) {
           openAll.addEventListener('click', () => {
-            lg.openGallery(0);
+            if (lgInstance) lgInstance.openGallery(0);
           });
         }
       })();
+
     </script>
 
     <!-- incluir showHeader&Footer.js para injetar header/footer -->
