@@ -13,11 +13,11 @@ function enviarParaWhatsapp() {
   const mensagem = document.getElementById("mensagem").value;
 
   const texto = `Olá! Meu nome é ${nome}. 
-    Localidade: ${localidade}. 
-    Email: ${email}. 
-    Produto: ${produto}.
-    Serviço: ${servico}.
-    Mensagem: ${mensagem}`;
+  Localidade: ${localidade}. 
+  Email: ${email}. 
+  Produto: ${produto}.
+  Serviço: ${servico}.
+  Mensagem: ${mensagem}`;
   const numero = "5511993687070"; // Substitua pelo seu número (com DDD e sem espaços)
 
   const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
