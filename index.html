@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts para melhor tipografia -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+      }
+      body{ font-family: var(--font-sans); }
+      .serif-heading{ font-family: var(--font-serif); }
+    </style>
   </head>
   <body class="bg-black">
 
@@ -39,46 +49,50 @@
         </div>
       </section>
 
-      <section id="secServicos" class="relative w-full  bg-[#f5f0eb] bg-cover">
-        <div data-aos="fade-up" class="mx-auto flex flex-col-reverse lg:flex-row gap-8 xl:gap-16 py-10 px-6 md:px-20">
-          <div class="w-full flex flex-col items-start justify-center gap-10">            
-            <h1 class="turning-90 text-4xl" data-splitting="chars">Entre os nossos serviços, destacamos:</h1>
-            <h3 class="text-justify sm:max-w-sm md:max-w-md lg:text-2xl whitespace-pre-line">
-                - Lavagem e manutenção de cortinas e persianas;
-                - Confecção e venda de cortinas e persianas (Com monstruário de tecidos);
-                - Tapeçaria em geral;
-                - Terceirização de serviços em instalações;
-            </h3>
+      <section id="secServicos" class="relative w-full bg-[#f5f0eb] bg-cover">
+        <div data-aos="fade-up" class="mx-auto max-w-7xl flex flex-col-reverse lg:flex-row items-center gap-8 xl:gap-16 py-16 px-6 md:px-20">
+          <!-- Texto -->
+          <div class="w-full flex flex-col items-start justify-center gap-8">
+            <h2 class="serif-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 leading-tight">
+              Entre os nossos serviços, destacamos:
+            </h2>
 
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4 p-6 bg-gradient-to-r from-slate-800 to-slate-600 rounded-2xl mx-auto max-w-4xl">
-              <a href="produtos.html" class="glass-button" style="background: rgba(59, 130, 246, 0.2);">
+            <div class="text-gray-700 text-lg md:text-xl leading-relaxed">
+              <ul class="list-disc pl-5 space-y-3">
+                <li>Lavagem e manutenção de cortinas e persianas;</li>
+                <li>Confecção e venda de cortinas e persianas (com mostruário de tecidos);</li>
+                <li>Tapeçaria em geral;</li>
+                <li>Terceirização de serviços em instalações;</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 p-6 bg-gradient-to-r from-slate-800 to-slate-600 rounded-2xl mx-auto max-w-4xl w-full">
+              <!-- botões: mantidos, apenas ajustei espaçamento e alinhamento -->
+              <a href="produtos.html" class="glass-button flex items-center gap-2 px-4 py-2" style="background: rgba(59, 130, 246, 0.12);">
                 <i class="fas fa-images"></i> Ver Galeria
               </a>
-              <a href="https://wa.me/5511993687070" target="_blank" class="glass-button" style="background: rgba(37, 211, 102, 0.2);">
+              <a href="https://wa.me/5511993687070" target="_blank" class="glass-button flex items-center gap-2 px-4 py-2" style="background: rgba(37, 211, 102, 0.12);">
                 <i class="fab fa-whatsapp"></i> WhatsApp
               </a>
-              <a href="https://www.instagram.com/rufinodecoracoes/" target="_blank" class="glass-button" style="background: rgba(225, 48, 108, 0.2);">
+              <a href="https://www.instagram.com/rufinodecoracoes/" target="_blank" class="glass-button flex items-center gap-2 px-4 py-2" style="background: rgba(225, 48, 108, 0.12);">
                 <i class="fab fa-instagram"></i> Instagram
               </a>
             </div>
 
-            <div class="bg-gray-100 rounded-xl p-6 my-10 text-gray-800 shadow-md max-w-xl mx-auto">
+            <div class="bg-white rounded-xl p-6 my-6 text-gray-800 shadow-md max-w-xl mx-auto w-full">
               <h3 class="text-xl font-semibold mb-2">Soluções inteligentes em cortinas e persianas motorizadas</h3>
-              <p class="text-sm mb-4">
+              <p class="text-sm mb-4 leading-relaxed">
                 Especialistas em motores e telas sob medida, com integração perfeita com os principais assistentes inteligentes.
               </p>
-              <div class="flex items-center gap-4 text-gray-600">
-                <!-- Alexa Icon -->
+              <div class="flex flex-wrap items-center gap-4 text-gray-600">
                 <span class="flex items-center gap-2">
                   <i class="fab fa-amazon text-xl"></i>
                   <span class="text-sm">Alexa</span>
                 </span>
-                <!-- Google Assistant Icon -->
                 <span class="flex items-center gap-2">
                   <i class="fab fa-google text-xl"></i>
                   <span class="text-sm">Google Assistant</span>
                 </span>
-                <!-- Apple HomeKit Icon -->
                 <span class="flex items-center gap-2">
                   <i class="fab fa-apple text-xl"></i>
                   <span class="text-sm">Apple HomeKit</span>
@@ -86,18 +100,18 @@
               </div>
             </div>
           </div>
+
           <!-- Imagem -->
           <div class="w-full flex justify-center">
             <img
               src="img/interior-moderno-da-sala-de-estar.jpg"
               alt="Cortina 1"
-              class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[500px] rounded object-cover h-auto mx-auto"
+              class="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[500px] rounded object-cover h-auto mx-auto shadow-lg"
               loading="lazy"
               decoding="async"
             />
           </div>
         </div>
-
       </section>
 
       <section id="parceiros" class="relative w-full h-[200px] overflow-hidden bg-gray-300">
