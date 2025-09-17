@@ -5,55 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Galeria - Cortinas</title>
 
-    <!-- Tailwind output -->
     <link href="./css/output.css" rel="stylesheet">
     <script src="js/navbar.js" defer></script>
-    <!-- lightGallery (bundle já inclui plugin de vídeo) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
   </head>
 
   <body class="bg-[#f5f0eb] text-white antialiased">
     <main class="mt-24 mb-16 px-4">
       <div class="max-w-6xl mx-auto">
-        <h1 class="text-2xl text-black sm:text-5xl font-semibold text-center mb-8">Galeria de Fotos e Vídeos</h1>
-        <!-- botão simples para abrir toda a galeria (opcional) -->
-        <div class="text-center">
-          <button id="openAll" class="px-6 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Abrir Galeria</button>
-          <button data-category="todas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Todas</button>
-          <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <button data-category="persianas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Persianas</button>
-            <button data-category="cortinas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Cortinas</button>
-            <button data-category="tapecarias" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Tapeçarias</button>
-            <button data-category="almofadas" class="filter-btn px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">Almofadas Decorativas</button>
-          </div>
+        <h1 class="text-5xl text-black sm:text-5xl font-semibold text-center mb-8">Galeria</h1>
+
+        <!-- placeholder quando não há itens carregados -->
+        <div id="emptyState" class="text-center text-gray-700 mx-5 mb-8">
+          <p class="italic">Selecione uma categoria abaixo e explore os produtos que preparamos para você</p>
         </div>
 
-        <!-- gallery grid container -->
-        <div id="galleryGrid" class="grid grid-cols-2 mt-8 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-center items-start">
-          <!-- itens serão gerados por JS -->
+        <!-- Cards de categorias -->
+        <div id="categoryCards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <button type="button" data-category="persianas" class="category-btn group bg-white text-black rounded-xl shadow-lg overflow-hidden hover:scale-105 transition transform">
+            <img src="img/persianas/double-vision.jpg" alt="Persianas" class="block w-full h-40 sm:h-44 md:h-40 lg:h-44 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-center">Persianas</h3>
+            </div>
+          </button>
+
+          <button type="button" data-category="cortinas" class="category-btn group bg-white text-black rounded-xl shadow-lg overflow-hidden hover:scale-105 transition transform">
+            <img src="img/cortinas/prega-americana.jpg" alt="Cortinas" class="block w-full h-40 sm:h-44 md:h-40 lg:h-44 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-center">Cortinas</h3>
+            </div>
+          </button>
+
+          <button type="button" data-category="tapecarias" class="category-btn group bg-white text-black rounded-xl shadow-lg overflow-hidden hover:scale-105 transition transform">
+            <img src="img/tapecarias/tapecaria1.jpg" alt="Tapeçarias" class="block w-full h-40 sm:h-44 md:h-40 lg:h-44 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-center">Tapeçarias</h3>
+            </div>
+          </button>
+
+          <button type="button" data-category="almofadas" class="category-btn group bg-white text-black rounded-xl shadow-lg overflow-hidden hover:scale-105 transition transform">
+            <img src="img/almofadas-decorativas/almofada2.jpg" alt="Almofadas" class="block w-full h-40 sm:h-44 md:h-40 lg:h-44 object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-center">Almofadas Decorativas</h3>
+            </div>
+          </button>
         </div>
+
+        <!-- Back button (hidden until a category is selected) -->
+        <div id="controls" class="flex justify-center gap-4 mt-6">
+          <button id="backBtn" class="hidden px-4 py-2 rounded-full bg-white text-black font-medium shadow hover:shadow-md transition">← Voltar</button>
+        </div>
+
+        <!-- grid da galeria (vazio até clique) -->
+        <div id="galleryGrid" class="grid grid-cols-2 mt-8 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-center items-start"></div>
       </div>
     </main>
 
     <div id="header"></div>
     <div id="footer"></div>
 
-    <!-- lightGallery script -->
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
 
     <script>
-      // Lista centralizada de itens (adicione aqui para expandir a galeria)
-      // type: 'image' | 'video'
-      // src: caminho do recurso (imagem ou vídeo)
-      // thumb: miniatura (pode ser a mesma imagem)
-      // alt: texto alternativo para acessibilidade
       const galleryItems = [
-        //ALMOFADAS
         { type: 'image', src: 'img/almofadas-decorativas/almofada2.jpg', thumb: 'img/almofadas-decorativas/almofada2.jpg', alt: 'Almofadas', category: 'almofadas' },
         { type: 'image', src: 'img/almofadas-decorativas/almofadas1.jpg', thumb: 'img/almofadas-decorativas/almofadas1.jpg', alt: 'Almofadas', category: 'almofadas' },
         { type: 'image', src: 'img/almofadas-decorativas/almofada3.webp', thumb: 'img/almofadas-decorativas/almofada3.webp', alt: 'Almofadas', category: 'almofadas' },
-        
-        //PERSIANAS
+
         { type: 'image', src: 'img/persianas/double-vision.jpg', thumb: 'img/persianas/double-vision.jpg', alt: 'Double Vision', category: 'persianas' },
         { type: 'image', src: 'img/persianas/horizontal.webp', thumb: 'img/persianas/horizontal.webp', alt: 'Horizontal', category: 'persianas' },
         { type: 'image', src: 'img/persianas/madeira.webp', thumb: 'img/persianas/madeira.webp', alt: 'Madeira', category: 'persianas' },
@@ -63,13 +81,11 @@
         { type: 'image', src: 'img/persianas/rolo-tela-solar.jpg', thumb: 'img/persianas/rolo-tela-solar.jpg', alt: 'Rolô Tela Solar', category: 'persianas' },
         { type: 'video', src: 'img/persianas/rolo-tela-solar.mp4', thumb: 'img/persianas/rolo-tela-solar.jpg', alt: 'Rolô Tela Solar', category: 'persianas' },
 
-        //TAPECARIAS
         { type: 'image', src: 'img/tapecarias/tapecaria1.jpg', thumb: 'img/tapecarias/tapecaria1.jpg', alt: 'Tapeçaria', category: 'tapecarias' },
         { type: 'image', src: 'img/tapecarias/tapecaria2.webp', thumb: 'img/tapecarias/tapecaria2.webp', alt: 'Tapeçaria', category: 'tapecarias' },
-        { type: 'image', src: 'img/tapecarias/tapecaria3.jpg', thumb: 'img/tapecarias/tapecaria3.jpg', alt: 'Tapeçaria', category: 'tapecarias' },
-        { type: 'image', src: 'img/tapecarias/tapecaria4.webp', thumb: 'img/tapecarias/tapecaria4.webp', alt: 'Tapeçaria', category: 'tapecarias' },
-        
-        //CORTINAS
+        { type: 'image', src: 'img/tapecarias/tapecaria3.jpg', thumb: 'img/tapecarias/tapecaria3.jpg', alt: 'Tapecaria', category: 'tapecarias' },
+        { type: 'image', src: 'img/tapecarias/tapecaria4.webp', thumb: 'img/tapecarias/tapecaria4.webp', alt: 'Tapecaria', category: 'tapecarias' },
+
         { type: 'image', src: 'img/cortinas/prega-americana.jpg', thumb: 'img/cortinas/prega-americana.jpg', alt: 'Prega Americana', category: 'cortinas' },
         { type: 'image', src: 'img/cortinas/prega-femea.jpg', thumb: 'img/cortinas/prega-femea.jpg', alt: 'Prega Femea', category: 'cortinas' },
         { type: 'image', src: 'img/cortinas/prega-franzida.jpeg', thumb: 'img/cortinas/prega-franzida.jpeg', alt: 'Prega Franzida', category: 'cortinas' },
@@ -78,10 +94,8 @@
         { type: 'image', src: 'img/cortinas/romana.jpg', thumb: 'img/cortinas/romana.jpg', alt: 'Romana', category: 'cortinas' },
       ];
 
-      // variável para manter a instância do lightGallery
       let lgInstance = null;
 
-      // cria um item da galeria no DOM (sem necessidade de duplicar markup manualmente)
       function createGalleryItem(item) {
         const a = document.createElement('a');
         a.className = 'block overflow-hidden rounded-lg shadow-sm bg-white';
@@ -90,7 +104,6 @@
         a.setAttribute('data-lg-size', '1280-720');
 
         if (item.type === 'video') {
-          // data attribute para lightgallery vídeo (JSON)
           a.setAttribute('data-lg-video', JSON.stringify({
             source: [{ src: item.src, type: 'video/mp4' }],
             attributes: { preload: false, controls: true }
@@ -108,61 +121,81 @@
         return a;
       }
 
-      // função para (re)inicializar o lightGallery no grid atual
       function initLightGalleryOn(grid) {
         if (lgInstance) {
-          try { lgInstance.destroy(); } catch (e) { /* ignore */ }
+          try { lgInstance.destroy(); } catch(e) {}
           lgInstance = null;
         }
         lgInstance = lightGallery(grid, {
           selector: 'a',
           speed: 400,
           download: false,
-          autoplayFirstVideo: false,
+          autoplayFirstVideo: false
         });
       }
 
-      // Filtro por categoria
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const selected = btn.getAttribute('data-category');
-          const grid = document.getElementById('galleryGrid');
-          grid.innerHTML = ''; // limpa galeria
+      function showGalleryView() {
+        document.getElementById('categoryCards').classList.add('hidden');
+        document.getElementById('backBtn').classList.remove('hidden');
+      }
 
-          const filtered = selected === 'todas'
-            ? galleryItems
-            : galleryItems.filter(item => item.category === selected);
+      function showCategoryView() {
+        document.getElementById('categoryCards').classList.remove('hidden');
+        document.getElementById('backBtn').classList.add('hidden');
 
+        const grid = document.getElementById('galleryGrid');
+        grid.innerHTML = '';
+        document.getElementById('emptyState').classList.remove('hidden');
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('ring-4', 'ring-indigo-300'));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function loadCategory(category) {
+        const grid = document.getElementById('galleryGrid');
+        grid.innerHTML = '';
+        const emptyState = document.getElementById('emptyState');
+
+        const filtered = category === 'todas' ? galleryItems : galleryItems.filter(it => it.category === category);
+
+        if (filtered.length === 0) {
+          emptyState.innerHTML = '<p class="text-gray-700">Nenhuma imagem encontrada para essa categoria.</p>';
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
           filtered.forEach(it => grid.appendChild(createGalleryItem(it)));
-
-          // reinicializa o lightGallery para que os novos <a> sejam reconhecidos
           initLightGalleryOn(grid);
+        }
+      }
+
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-category');
+          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('ring-4', 'ring-indigo-300'));
+          btn.classList.add('ring-4', 'ring-indigo-300');
+
+          showGalleryView();
+          loadCategory(cat);
+
+          setTimeout(() => {
+            const grid = document.getElementById('galleryGrid');
+            if (grid.children.length) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 80);
         });
       });
 
-      // renderiza a grade e inicializa o lightGallery
-      (function initGallery() {
-        const grid = document.getElementById('galleryGrid');
-        if (!grid) return;
-
-        // cria dinamicamente os itens
-        galleryItems.forEach(it => grid.appendChild(createGalleryItem(it)));
-
-        // inicializa lightGallery no container (seleciona <a>)
-        initLightGalleryOn(grid);
-
-        // botão "Abrir Galeria" abre o primeiro item
-        const openAll = document.getElementById('openAll');
-        if (openAll) {
-          openAll.addEventListener('click', () => {
-            if (lgInstance) lgInstance.openGallery(0);
-          });
+      document.getElementById('backBtn').addEventListener('click', () => {
+        if (lgInstance) {
+          try { lgInstance.destroy(); } catch(e) {}
+          lgInstance = null;
         }
-      })();
+        showCategoryView();
+      });
 
+      (function init() {
+        document.getElementById('emptyState').classList.remove('hidden');
+      })();
     </script>
 
-    <!-- incluir showHeader&Footer.js para injetar header/footer -->
     <script src="js/showHeader&Footer.js" defer></script>
   </body>
 </html>
