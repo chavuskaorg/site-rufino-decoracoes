@@ -1,8 +1,8 @@
 {
    "scripts": {
-      "dev": "npx @tailwindcss/cli -i ./css/style.css -o ./css/output.css --watch",
-      "build": "npx @tailwindcss/cli -i ./css/style.css -o ./css/output.css --minify"
-   },
+      "dev": "tailwindcss -i ./css/style.css -o ./css/output.css --watch",
+      "build": "tailwindcss -i ./css/style.css -o ./css/output.css --minify"
+    },
    "devDependencies": {
       "tailwindcss": "^4.1.11"
    },
@@ -21,8 +21,5 @@
    "bugs": {
       "url": "https://github.com/chavuskaorg/site-rufino-decoracoes/issues"
    },
-   "homepage": "https://github.com/chavuskaorg/site-rufino-decoracoes#readme",
-   "dependencies": {
-      "@tailwindcss/cli": "^4.1.11"
-   }
+   "homepage": "https://github.com/chavuskaorg/site-rufino-decoracoes#readme"
 }
