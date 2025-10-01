@@ -66,12 +66,24 @@
 
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
 
+    <!-- Video modal (hidden) -->
+    <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
+      <div class="w-full max-w-4xl">
+        <div class="relative bg-black rounded-lg overflow-hidden">
+          <button id="videoCloseBtn" class="absolute top-3 right-3 z-20 bg-white/10 text-white rounded-full p-2">✕</button>
+          <video id="modalVideo" class="w-full h-auto bg-black" controls playsinline></video>
+        </div>
+      </div>
+    </div>
     <script>
+      // Primeiro, atualize os itens de vídeo para não depender de thumbs estáticas
       const galleryItems = [
+        // Almofadas
         { type: 'image', src: 'img/almofadas-decorativas/almofada2.jpg', thumb: 'img/almofadas-decorativas/almofada2.jpg', alt: 'Almofadas', category: 'almofadas' },
         { type: 'image', src: 'img/almofadas-decorativas/almofadas1.jpg', thumb: 'img/almofadas-decorativas/almofadas1.jpg', alt: 'Almofadas', category: 'almofadas' },
         { type: 'image', src: 'img/almofadas-decorativas/almofada3.webp', thumb: 'img/almofadas-decorativas/almofada3.webp', alt: 'Almofadas', category: 'almofadas' },
-
+        
+        // Persianas
         { type: 'image', src: 'img/persianas/double-vision.jpg', thumb: 'img/persianas/double-vision.jpg', alt: 'Double Vision', category: 'persianas' },
         { type: 'image', src: 'img/persianas/horizontal.webp', thumb: 'img/persianas/horizontal.webp', alt: 'Horizontal', category: 'persianas' },
         { type: 'image', src: 'img/persianas/madeira.webp', thumb: 'img/persianas/madeira.webp', alt: 'Madeira', category: 'persianas' },
@@ -79,61 +91,186 @@
         { type: 'image', src: 'img/persianas/romana.jpg', thumb: 'img/persianas/romana.jpg', alt: 'Romana', category: 'persianas' },
         { type: 'image', src: 'img/persianas/vertical.jpg', thumb: 'img/persianas/vertical.jpg', alt: 'Vertical', category: 'persianas' },
         { type: 'image', src: 'img/persianas/rolo-tela-solar.jpg', thumb: 'img/persianas/rolo-tela-solar.jpg', alt: 'Rolô Tela Solar', category: 'persianas' },
-        { type: 'video', src: 'img/persianas/rolo-tela-solar.mp4', thumb: 'img/persianas/rolo-tela-solar.jpg', alt: 'Rolô Tela Solar', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/persiana-escritorio.jpg', thumb: 'img/persianas/persiana-escritorio.jpg', alt: 'Persiana Escritório', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/persiana-salao-de-jogos.jpg', thumb: 'img/persianas/persiana-salao-de-jogos.jpg', alt: 'Persiana Salão de Jogos', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/persiana1.jpg', thumb: 'img/persianas/persiana1.jpg', alt: 'Persiana', category: 'persianas' },
+        { type: 'image', src: 'img/persianas/persiana2.jpg', thumb: 'img/persianas/persiana2.jpg', alt: 'Persiana', category: 'persianas' },
 
+        // use a real frame image (first frame) as thumb for each video
+        { type: 'video', src: 'img/persianas/rolo-tela-solar.mp4', alt: 'Rolô Tela Solar', category: 'persianas' },
+        { type: 'video', src: 'img/persianas/persiana-motorizada.mp4', alt: 'Persiana Motorizada', category: 'persianas' },
+        { type: 'video', src: 'img/persianas/persiana-motorizada2.mp4', alt: 'Persiana Motorizada', category: 'persianas' },
+
+        // Tapecarias
         { type: 'image', src: 'img/tapecarias/tapecaria1.jpg', thumb: 'img/tapecarias/tapecaria1.jpg', alt: 'Tapeçaria', category: 'tapecarias' },
         { type: 'image', src: 'img/tapecarias/tapecaria2.webp', thumb: 'img/tapecarias/tapecaria2.webp', alt: 'Tapeçaria', category: 'tapecarias' },
         { type: 'image', src: 'img/tapecarias/tapecaria3.jpg', thumb: 'img/tapecarias/tapecaria3.jpg', alt: 'Tapecaria', category: 'tapecarias' },
         { type: 'image', src: 'img/tapecarias/tapecaria4.webp', thumb: 'img/tapecarias/tapecaria4.webp', alt: 'Tapecaria', category: 'tapecarias' },
-
+        
+        // Cortinas
         { type: 'image', src: 'img/cortinas/prega-americana.jpg', thumb: 'img/cortinas/prega-americana.jpg', alt: 'Prega Americana', category: 'cortinas' },
         { type: 'image', src: 'img/cortinas/prega-femea.jpg', thumb: 'img/cortinas/prega-femea.jpg', alt: 'Prega Femea', category: 'cortinas' },
         { type: 'image', src: 'img/cortinas/prega-franzida.jpeg', thumb: 'img/cortinas/prega-franzida.jpeg', alt: 'Prega Franzida', category: 'cortinas' },
         { type: 'image', src: 'img/cortinas/prega-wave-varao.jpg', thumb: 'img/cortinas/prega-wave-varao.jpg', alt: 'Prega Wave Varão', category: 'cortinas' },
         { type: 'image', src: 'img/cortinas/prega-wave.jpg', thumb: 'img/cortinas/prega-wave.jpg', alt: 'Prega Wave', category: 'cortinas' },
         { type: 'image', src: 'img/cortinas/romana.jpg', thumb: 'img/cortinas/romana.jpg', alt: 'Romana', category: 'cortinas' },
+        { type: 'image', src: 'img/cortinas/cortina-quarto.jpg', thumb: 'img/cortinas/cortina-quarto.jpg', alt: 'Cortina Quarto', category: 'cortinas' },
       ];
-
+ 
       let lgInstance = null;
+ 
+      // Melhorar a função generateVideoPoster para ser mais robusta
+      function generateVideoPoster(videoSrc) {
+        return new Promise((resolve, reject) => {
+          const video = document.createElement('video');
+          video.style.display = 'none';
+          document.body.appendChild(video);
+          
+          let timeoutId = setTimeout(() => {
+            cleanup();
+            reject(new Error('Timeout'));
+          }, 5000); // 5s timeout
 
-      function createGalleryItem(item) {
+          const cleanup = () => {
+            clearTimeout(timeoutId);
+            video.pause();
+            video.removeAttribute('src');
+            video.load();
+            if (video.parentNode) video.parentNode.removeChild(video);
+          };
+
+          video.addEventListener('loadeddata', () => {
+            try {
+              const canvas = document.createElement('canvas');
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(video, 0, 0);
+              const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+              cleanup();
+              resolve(dataUrl);
+            } catch (err) {
+              cleanup();
+              reject(err);
+            }
+          }, { once: true });
+
+          video.addEventListener('error', (e) => {
+            cleanup();
+            reject(e);
+          }, { once: true });
+
+          video.src = videoSrc;
+          video.currentTime = 0.1; // Tenta pegar um frame logo no início
+        });
+      }
+ 
+      // Modificar createGalleryItem para gerar thumbnails automaticamente
+      async function createGalleryItem(item) {
         const a = document.createElement('a');
-        a.className = 'block overflow-hidden rounded-lg shadow-sm bg-white';
-        a.href = item.src;
+        a.className = 'relative block overflow-hidden rounded-lg shadow-sm bg-white';
         a.setAttribute('aria-label', item.alt || '');
-        a.setAttribute('data-lg-size', '1280-720');
 
-        if (item.type === 'video') {
-          a.setAttribute('data-lg-video', JSON.stringify({
-            source: [{ src: item.src, type: 'video/mp4' }],
-            attributes: { preload: false, controls: true }
-          }));
+        if (item.type === 'image') {
+          a.href = item.src;
+          a.classList.add('lg-image');
+          a.setAttribute('data-lg-size', '1280-720');
+          a.setAttribute('data-sub-html', `<h4>${item.alt}</h4>`);
+        } else if (item.type === 'video') {
+          a.href = '#';
+          a.classList.add('video-item');
+          a.dataset.videoSrc = item.src;
+          a.dataset.videoTitle = item.alt || '';
+          
+          // Tenta gerar o poster automaticamente
+          try {
+            const posterDataUrl = await generateVideoPoster(item.src);
+            a.dataset.videoPoster = posterDataUrl;
+          } catch (err) {
+            console.warn('Could not generate video poster:', err);
+            // Fallback para um placeholder ou primeira tentativa de frame
+            a.dataset.videoPoster = '';
+          }
         }
 
         const img = document.createElement('img');
         img.loading = 'lazy';
         img.decoding = 'async';
         img.className = 'w-full h-40 object-cover sm:h-44 md:h-36 lg:h-44';
-        img.src = item.thumb || item.src;
         img.alt = item.alt || '';
 
-        a.appendChild(img);
+        if (item.type === 'video') {
+          // Usar o poster gerado ou um placeholder enquanto carrega
+          img.src = a.dataset.videoPoster || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+          
+          const overlay = document.createElement('div');
+          overlay.className = 'absolute inset-0 flex items-center justify-center pointer-events-none';
+          overlay.innerHTML = `
+            <div class="bg-black/40 rounded-full p-2 flex items-center justify-center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>`;
+          
+          a.appendChild(img);
+          a.appendChild(overlay);
+        } else {
+          img.src = item.thumb || item.src;
+          a.appendChild(img);
+        }
+
         return a;
       }
-
+ 
       function initLightGalleryOn(grid) {
         if (lgInstance) {
           try { lgInstance.destroy(); } catch(e) {}
           lgInstance = null;
         }
+        // initialize ONLY for image anchors (class .lg-image) so videos are handled separately
         lgInstance = lightGallery(grid, {
-          selector: 'a',
+          selector: 'a.lg-image',
           speed: 400,
           download: false,
-          autoplayFirstVideo: false
+          autoplayFirstVideo: false,
+          // keep titles
+          subHtmlSelectorRelative: true
         });
       }
-
+ 
+      // Video modal controls
+      const videoModal = document.getElementById('videoModal');
+      const modalVideo = document.getElementById('modalVideo');
+      const videoCloseBtn = document.getElementById('videoCloseBtn');
+ 
+      function openVideoModal(src, poster, title) {
+        try { if (lgInstance) lgInstance.closeGallery(); } catch(e) {}
+        modalVideo.src = src;
+        if (poster) modalVideo.poster = poster;
+        modalVideo.setAttribute('aria-label', title || 'Vídeo');
+        modalVideo.play().catch(()=>{}); // ignore play promise
+        videoModal.classList.remove('hidden');
+        videoModal.classList.add('flex');
+      }
+      function closeVideoModal() {
+        modalVideo.pause();
+        modalVideo.removeAttribute('src');
+        modalVideo.load();
+        videoModal.classList.add('hidden');
+        videoModal.classList.remove('flex');
+      }
+      videoCloseBtn.addEventListener('click', closeVideoModal);
+      videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+ 
+      // delegate clicks for video items
+      document.addEventListener('click', function(e) {
+        const v = e.target.closest && e.target.closest('.video-item');
+        if (v) {
+          e.preventDefault();
+          openVideoModal(v.dataset.videoSrc, v.dataset.videoPoster, v.dataset.videoTitle);
+        }
+      });
+ 
       function showGalleryView() {
         document.getElementById('categoryCards').classList.add('hidden');
         document.getElementById('backBtn').classList.remove('hidden');
@@ -150,7 +287,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      function loadCategory(category) {
+      async function loadCategory(category) {
         const grid = document.getElementById('galleryGrid');
         grid.innerHTML = '';
         const emptyState = document.getElementById('emptyState');
@@ -162,7 +299,9 @@
           emptyState.classList.remove('hidden');
         } else {
           emptyState.classList.add('hidden');
-          filtered.forEach(it => grid.appendChild(createGalleryItem(it)));
+          // Criar todos os itens em paralelo
+          const items = await Promise.all(filtered.map(it => createGalleryItem(it)));
+          items.forEach(item => grid.appendChild(item));
           initLightGalleryOn(grid);
         }
       }
@@ -195,7 +334,7 @@
         document.getElementById('emptyState').classList.remove('hidden');
       })();
     </script>
-
-    <script src="js/showHeader&Footer.js" defer></script>
-  </body>
-</html>
+ 
+     <script src="js/showHeader&Footer.js" defer></script>
+   </body>
+ </html>

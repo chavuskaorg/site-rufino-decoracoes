@@ -8,3 +8,5 @@ npm run dev
 
 ## Build para produção
 npm run build
+
+- https://www.youtube.com/watch?v=xo_1aUBcZQA
